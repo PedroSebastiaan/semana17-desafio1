@@ -6,6 +6,8 @@
   <thead>
     <tr>
       <th>Name</th>
+      <th>More</th>
+      <th>&More</th>
       <th colspan="3"></th>
     </tr>
   </thead>
@@ -13,6 +15,8 @@
   <tbody>
     <% @categories.each do |category| %>
       <tr>
+        <td><%= category.name %></td>
+        <td><%= category.name %></td>
         <td><%= category.name %></td>
         <td><%= link_to 'Show', category %></td>
         <td><%= link_to 'Edit', edit_category_path(category) %></td>
