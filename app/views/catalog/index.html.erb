@@ -13,7 +13,6 @@
                                     <h5 class="card-title"><%= Product.find(variant.product_id).name %></h5>
                                     <div class="card-text">
                                         <div class="badge badge-primary"><%= Category.find(Product.find(variant.product_id).categories.ids.first).name %></div>
-                                        <div>$<%= Product.find(variant.product_id).price %></div>
                                     </div>
                                     <button class="btn btn-primary btn-sm"><%= link_to 'View more', show_path(variant.id) %></button>
                                 </div>

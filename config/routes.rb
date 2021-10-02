@@ -1,6 +1,7 @@
 Rails.application.routes.draw do
   get 'catalog/index'
   get 'catalog/show/:id', to: 'catalog#show', as: 'show'
+  get 'catalog/show/:id/:color_id', to: 'catalog#show_sizes', as: 'show_sizes'
   get 'home/index'
   devise_for :users
   devise_for :admins

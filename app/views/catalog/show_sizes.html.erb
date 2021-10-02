@@ -2,11 +2,9 @@
     <div class="col-md-8 offset-2">
         <div class="container">
             <div class="row">
-            <%# ORDERED BY COLOR FIRST %>
-            <% shows = [] %>
+            <%# ORDERED BY SIZES SECOND %>
                 <% @variants.each do |variant| %>
-                    <% if shows.include?(variant.color_id) == false && variant.stock > 0 %>
-                        <% shows.push(variant.color_id) %>
+                    <% if variant.stock > 0 %>
                         <div class="col-md-3">
                             <div class="card">
                                 <img class="card-img-top" src="https://dummyimage.com/600x400/c7c7c7/737373&text=image" alt="<%= Product.find(variant.product_id).name %>"/>
@@ -16,8 +14,8 @@
                                         <div class="badge badge-primary"><%= Category.find(Product.find(variant.product_id).categories.ids.first).name %></div>
                                         <div>$<%= Product.find(variant.product_id).price %></div>
                                         <div>Color: <%= Color.find(variant.color_id).color_spec %></div>
+                                        <div>Size: <%= Size.find(variant.size_id).size_spec %></div>
                                     </div>
-                                    <button class="btn btn-primary btn-sm"><%= link_to 'Select your size', show_sizes_path(variant.id, variant.color_id) %></button>
                                 </div>
                             </div>
                         </div>
