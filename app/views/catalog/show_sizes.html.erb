@@ -16,6 +16,15 @@
                                         <div>Color: <%= Color.find(variant.color_id).color_spec %></div>
                                         <div>Size: <%= Size.find(variant.size_id).size_spec %></div>
                                     </div>
+                                    <div class="row float-right">
+                                        <div class="col-md-12">
+                                            <%= form_for :cart, url: cart_path, method: :put do |f| %>
+                                            <%= f.hidden_field :variant_id, value: variant.id %>
+                                            <%= f.hidden_field :quantity, value: 1 %>
+                                            <%= f.submit "Add to cart" %>
+                                            <% end %>
+                                        </div>
+                                    </div>
                                 </div>
                             </div>
                         </div>

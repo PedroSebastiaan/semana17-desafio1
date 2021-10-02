@@ -1,4 +1,5 @@
 class CatalogController < ApplicationController
+  before_action :authenticate_user!
   def index
     @variants = Variant.all
     @categories = Category.all
