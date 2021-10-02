@@ -1,8 +1,10 @@
 Rails.application.routes.draw do
   get 'catalog/index'
+  get 'catalog/show/:id', to: 'catalog#show', as: 'show'
+  get 'home/index'
   devise_for :users
   devise_for :admins
-  root to: "home#index"
+  root to: "catalog#index"
 
   authenticate :admin do
     resources :products

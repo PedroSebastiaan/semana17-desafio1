@@ -2,10 +2,8 @@
     <div class="col-md-8 offset-2">
         <div class="container">
             <div class="row">
-                <% shows = [] %>
                 <% @variants.each do |variant| %>
-                    <% if shows.include?(variant.product_id) == false && variant.stock > 0 %>
-                        <% shows.push(variant.product_id) %>
+                    <% if variant.stock > 0 %>
                         <div class="col-md-3">
                             <div class="card">
                                 <img class="card-img-top" src="https://dummyimage.com/600x400/c7c7c7/737373&text=image" alt="<%= Product.find(variant.product_id).name %>"/>
@@ -14,6 +12,7 @@
                                     <div class="card-text">
                                         <div class="badge badge-primary"><%= Category.find(Product.find(variant.product_id).categories.ids.first).name %></div>
                                         <div>$<%= Product.find(variant.product_id).price %></div>
+                                        <div>Stock: <%= variant.stock %></div>
                                     </div>
                                     <button class="btn btn-primary btn-sm"><%= link_to 'View more', show_path(variant.id) %></button>
                                 </div>
