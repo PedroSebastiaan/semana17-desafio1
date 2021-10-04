@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 2021_10_01_002515) do
+ActiveRecord::Schema.define(version: 2021_10_04_233913) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
@@ -44,6 +44,14 @@ ActiveRecord::Schema.define(version: 2021_10_01_002515) do
 
   create_table "colors", force: :cascade do |t|
     t.string "color_spec"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "coupons", force: :cascade do |t|
+    t.string "code"
+    t.integer "porcentual_discount"
+    t.integer "money_discount"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -103,6 +111,15 @@ ActiveRecord::Schema.define(version: 2021_10_01_002515) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "user_discounts", force: :cascade do |t|
+    t.bigint "coupon_id"
+    t.bigint "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["coupon_id"], name: "index_user_discounts_on_coupon_id"
+    t.index ["user_id"], name: "index_user_discounts_on_user_id"
+  end
+
   create_table "users", force: :cascade do |t|
     t.string "email", default: "", null: false
     t.string "encrypted_password", default: "", null: false
@@ -133,6 +150,8 @@ ActiveRecord::Schema.define(version: 2021_10_01_002515) do
   add_foreign_key "orders", "users"
   add_foreign_key "payments", "orders"
   add_foreign_key "payments", "payment_methods"
+  add_foreign_key "user_discounts", "coupons"
+  add_foreign_key "user_discounts", "users"
   add_foreign_key "variants", "colors"
   add_foreign_key "variants", "products"
   add_foreign_key "variants", "sizes"
